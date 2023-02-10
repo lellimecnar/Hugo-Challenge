@@ -11,7 +11,11 @@ export const ApplicationId = z
 
 export const Application = z.object({
 	_id: ApplicationId,
-	vehicles: Vehicle.required().array().min(1).max(3).default([]),
+	vehicles: Vehicle.required()
+		.array()
+		.min(1, 'You must include at least one vehicle')
+		.max(3)
+		.default([]),
 	applicant: Applicant.required(),
 	coApplicants: CoApplicant.required()
 		.array()

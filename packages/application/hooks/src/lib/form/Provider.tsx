@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -18,7 +18,7 @@ export const ApplicationFormProvider = ({
 	id,
 	children,
 }: ApplicationFormProviderProps) => {
-	const { data: values } = useApplication(id);
+	const { data: values, error } = useApplication(id);
 
 	const resolver = useMemo(() => {
 		const schema = id ? Application : Application.omit({ _id: true });
@@ -37,5 +37,19 @@ export const ApplicationFormProvider = ({
 		},
 	});
 
-	return <FormProvider {...methods}>{children}</FormProvider>;
+	useEffect(() => {
+		if (Array.isArray(error?.items) && error.items.length) {
+			error.items.forEach((err) => {
+				methods.setError(err.path.join('.'), err);
+			});
+			// console..dir(z)
+		}
+	}, [error, methods.setError]);
+
+	return (
+		<FormProvider {...methods}>
+			{children}
+			<pre>{JSON.stringify(methods.formState.errors, null, '    ')}</pre>
+		</FormProvider>
+	);
 };

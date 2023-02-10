@@ -98,36 +98,43 @@ const ApplicationForm = ({ id }: ApplicationFormProps) => {
 			setPaused(true);
 		}
 	}, [isSubmitting, setPaused]);
+
+	const validate = useCallback(
+		async () => trigger(compRef.current.fields),
+		[compRef],
+	);
 	const prevStep = useCallback(() => dec(), [dec]);
 	const nextStep = useCallback(async () => {
 		setPaused(true);
 
-		console.log(compRef.current.fields);
-		if (await trigger(compRef.current.fields)) {
+		if (await validate()) {
 			inc();
 		}
 
 		await new Promise((resolve) => setTimeout(resolve, 500));
 
 		setPaused(false);
-	}, [inc, trigger, setPaused, compRef]);
+	}, [inc, setPaused, validate]);
 	const lastStep = useCallback(async () => {
-		const newData = await saveApplication(getValues());
-		console.log({ newData });
-		const calculatedData = await calculateApplication(newData._id);
-		console.log({ calculatedData });
+		if (await trigger()) {
+			const newData = await saveApplication(getValues());
+			const calculatedData = await calculateApplication(newData._id);
 
-		reset(calculatedData);
+			reset(calculatedData);
 
-		set(STEPS.length);
-	}, [saveApplication, calculateApplication, getValues, set, reset]);
+			set(STEPS.length);
+		}
+	}, [saveApplication, calculateApplication, getValues, set, reset, trigger]);
 
 	const saveForLater = useCallback(async () => {
-		setPaused(true);
-		await saveApplication(getValues());
+		try {
+			await saveApplication(getValues());
 
-		router.push('/applications');
-	}, [saveApplication, getValues, router.push, setPaused]);
+			router.push('/applications');
+		} catch (error) {
+			trigger();
+		}
+	}, [saveApplication, getValues, router.push, setPaused, trigger]);
 
 	return (
 		<Container>
