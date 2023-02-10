@@ -1,0 +1,32 @@
+{
+	"name": "application-service-schema",
+	"$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "packages/application/service/schema/src",
+	"projectType": "library",
+	"targets": {
+		"build": {
+			"executor": "@nrwl/vite:build",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/packages/application/service/schema"
+			}
+		},
+		"publish": {
+			"executor": "nx:run-commands",
+			"options": {
+				"command": "node tools/scripts/publish.mjs application-service-schema {args.ver} {args.tag}"
+			},
+			"dependsOn": ["build"]
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": [
+					"packages/application/service/schema/**/*.ts"
+				]
+			}
+		}
+	},
+	"tags": []
+}

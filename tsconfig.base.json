@@ -1,20 +1,36 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "rootDir": ".",
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "es2015",
-    "module": "esnext",
-    "lib": ["es2017", "dom"],
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "baseUrl": ".",
-    "paths": {}
-  },
-  "exclude": ["node_modules", "tmp"]
+	"compileOnSave": false,
+	"compilerOptions": {
+		"rootDir": ".",
+		"sourceMap": true,
+		"declaration": false,
+		"moduleResolution": "node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"importHelpers": true,
+		"target": "es2015",
+		"module": "esnext",
+		"lib": ["es2017", "dom"],
+		"skipLibCheck": true,
+		"skipDefaultLibCheck": true,
+		"esModuleInterop": true,
+		"baseUrl": ".",
+		"jsx": "react-jsxdev",
+		"paths": {
+			"@proj/application-hooks": [
+				"packages/application/hooks/src/index.ts"
+			],
+			"@proj/application-service/client": [
+				"packages/application/service/client/src/index.ts"
+			],
+			"@proj/application-service/schema": [
+				"packages/application/service/schema/src/index.ts"
+			],
+			"@proj/application-service/server": [
+				"packages/application/service/server/src/index.ts"
+			],
+			"@proj/shared-db": ["packages/shared/db/src/index.ts"]
+		}
+	},
+	"exclude": ["node_modules", "tmp"]
 }
