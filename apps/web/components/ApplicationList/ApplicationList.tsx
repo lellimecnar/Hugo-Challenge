@@ -25,21 +25,6 @@ const ApplicationList = ({ data }: ApplicationListProps) => (
 				<Row key={application._id} {...application} />
 			))}
 		</tbody>
-		<tfoot>
-			<tr>
-				<td colSpan={5} align="center">
-					<Button
-						component={Link}
-						href="/applications/create"
-						variant="subtle"
-					>
-						<IconSquarePlus />
-						<Space w="sm" />
-						Start a New Application
-					</Button>
-				</td>
-			</tr>
-		</tfoot>
 	</Table>
 );
 

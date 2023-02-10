@@ -8,6 +8,7 @@ import {
 	Badge,
 	Center,
 	Group,
+	Anchor,
 } from '@mantine/core';
 import {
 	IconSquareMinus,
@@ -42,9 +43,9 @@ const Row = ({ _id, applicant, price }: ApplicationInputType) => {
 	return (
 		<tr key={_id}>
 			<td>
-				<Text component={Link} href={`/applications/${_id}`}>
+				<Anchor component={Link} href={`/applications/${_id}`}>
 					{fullName(applicant)}
-				</Text>
+				</Anchor>
 			</td>
 			<td>
 				<Text>{location(applicant?.address)}</Text>

@@ -3,7 +3,7 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { MantineProvider, Container, Button } from '@mantine/core';
+import { MantineProvider, Container, Button, Title } from '@mantine/core';
 import { IconChevronLeft } from '@tabler/icons-react';
 import { withApplicationQuery } from '@proj/application-hooks';
 

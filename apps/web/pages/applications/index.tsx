@@ -1,4 +1,13 @@
-import { Loader, Center, Paper } from '@mantine/core';
+import Link from 'next/link';
+import {
+	Paper,
+	Button,
+	Space,
+	Group,
+	Title,
+	LoadingOverlay,
+} from '@mantine/core';
+import { IconSquarePlus } from '@tabler/icons-react';
 
 import { useApplications } from '@proj/application-hooks';
 
@@ -10,16 +19,21 @@ export function Applications() {
 
 	return (
 		<div>
-			<h1>Application List</h1>
-			<Center>
-				<Paper shadow="md" withBorder mih={250} p="lg" my="lg">
-					{isLoading ? (
-						<Loader variant="dots" size="xl" />
-					) : (
-						<ApplicationList data={data} />
-					)}
-				</Paper>
-			</Center>
+			<Group position="apart" align="end">
+				<Title>Application List</Title>
+				<Button
+					component={Link}
+					href="/applications/create"
+					variant="subtle"
+					leftIcon={<IconSquarePlus />}
+				>
+					Start a New Application
+				</Button>
+			</Group>
+			<Paper shadow="md" withBorder mih={250} p="lg" my="lg">
+				<LoadingOverlay visible={isLoading} />
+				{!isLoading && <ApplicationList data={data} />}
+			</Paper>
 		</div>
 	);
 }

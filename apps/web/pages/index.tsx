@@ -8,14 +8,14 @@ export function Index() {
 	 * Note: The corresponding styles are in the ./index.@emotion/styled file.
 	 */
 	return (
-		<Container>
-			<Title mb="xl">Home Page</Title>
+		<>
+			<Title>Home Page</Title>
 			<Center mih={250}>
 				<Button size="xl" component={Link} href="/applications">
 					Go to Application List Page
 				</Button>
 			</Center>
-		</Container>
+		</>
 	);
 }
 

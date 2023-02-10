@@ -1,9 +1,11 @@
 import { ApplicationFormProvider } from '@proj/application-hooks';
+import { Title } from '@mantine/core';
+
 import ApplicationForm from 'apps/web/components/ApplicationForm';
 
 export const Edit = () => (
 	<ApplicationFormProvider>
-		<h1>New Application Form</h1>
+		<Title mb="xl">New Application Form</Title>
 		<ApplicationForm />
 	</ApplicationFormProvider>
 );

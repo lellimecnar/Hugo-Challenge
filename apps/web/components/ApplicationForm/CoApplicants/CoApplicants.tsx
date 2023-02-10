@@ -95,9 +95,11 @@ const CoApplicants = () => {
 				{fields.length < MAX && (
 					<tr>
 						<td colSpan={5} align="center">
-							<Button onClick={() => append({})} variant="subtle">
-								<IconSquarePlus />
-								<Space w="sm" />
+							<Button
+								onClick={() => append({})}
+								variant="subtle"
+								leftIcon={<IconSquarePlus />}
+							>
 								Add a Co-Applicant
 							</Button>
 						</td>

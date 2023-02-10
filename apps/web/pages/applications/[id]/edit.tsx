@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router';
 import { ApplicationFormProvider } from '@proj/application-hooks';
+import { Title } from '@mantine/core';
+
 import ApplicationForm from 'apps/web/components/ApplicationForm';
 
 export const Edit = () => {
@@ -8,7 +10,7 @@ export const Edit = () => {
 	} = useRouter();
 	return (
 		<ApplicationFormProvider id={id as string}>
-			<h1>Application Form</h1>
+			<Title mb="xl">Application Edit</Title>
 			<ApplicationForm id={id as string} />
 		</ApplicationFormProvider>
 	);

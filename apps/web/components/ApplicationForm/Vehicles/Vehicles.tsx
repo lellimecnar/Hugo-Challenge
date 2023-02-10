@@ -6,7 +6,6 @@ import {
 	Table,
 	Group,
 	Button,
-	Space,
 } from '@mantine/core';
 import { IconSquarePlus, IconSquareMinus } from '@tabler/icons-react';
 import range from 'lodash/range';
@@ -90,9 +89,11 @@ const Vehicles = () => {
 				{fields.length < MAX && (
 					<tr>
 						<td colSpan={5} align="center">
-							<Button onClick={() => append({})} variant="subtle">
-								<IconSquarePlus />
-								<Space w="sm" />
+							<Button
+								onClick={() => append({})}
+								variant="subtle"
+								leftIcon={<IconSquarePlus />}
+							>
 								Add a Vehicle
 							</Button>
 						</td>

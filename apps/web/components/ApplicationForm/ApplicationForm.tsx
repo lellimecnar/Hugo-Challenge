@@ -9,7 +9,13 @@ import {
 	Container,
 	LoadingOverlay,
 } from '@mantine/core';
-import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
+import {
+	IconChevronLeft,
+	IconChevronRight,
+	IconId,
+	IconCar,
+	IconFriends,
+} from '@tabler/icons-react';
 import { useCounter, useLatest } from 'react-use';
 
 import type { ApplicationIdType } from '@proj/application-service/schema';
@@ -29,14 +35,17 @@ const STEPS = [
 	{
 		Comp: Applicant,
 		label: 'Applicant Info',
+		icon: <IconId />,
 	},
 	{
 		Comp: Vehicles,
 		label: 'Vehicles',
+		icon: <IconCar />,
 	},
 	{
 		Comp: CoApplicants,
 		label: 'Co-Applicants',
+		icon: <IconFriends />,
 	},
 ];
 
@@ -138,7 +147,7 @@ const ApplicationForm = ({ id }: ApplicationFormProps) => {
 				</Stepper.Completed>
 			</Stepper>
 			{activeStep <= STEPS.length - 1 && (
-				<Group position="apart" mt="xl" p="lg">
+				<Group position="apart" mt="xl" pt="md">
 					<Group position="left">
 						<Button
 							variant="default"
