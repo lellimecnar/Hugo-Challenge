@@ -21,7 +21,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 		<>
 			<MantineProvider withGlobalStyles withNormalizeCSS>
 				<Head>
-					<title>Hugo Challenge – Lance Miller</title>
+					<title>Hugo Challenge - Lance Miller</title>
 				</Head>
 				<Container size="lg" py="xl">
 					{back !== router.asPath && (

@@ -22,13 +22,13 @@ export const update = (id: ApplicationIdType, data: ApplicationInputType) =>
 
 export const save = (
 	...args:
-		| [id: ApplicationIdType, data: ApplicationInputType]
-		| [id: ApplicationInputType]
+		| [id: ApplicationIdType | void, data: ApplicationInputType]
+		| [data: ApplicationInputType]
 ) => {
 	const data = args.pop() as ApplicationInputType;
 	const id = args.pop() as string | undefined;
 
-	if (typeof id === 'string') {
+	if (id && typeof id === 'string') {
 		return update(id, data);
 	}
 

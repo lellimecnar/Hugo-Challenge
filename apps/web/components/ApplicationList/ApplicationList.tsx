@@ -11,13 +11,12 @@ export interface ApplicationListProps {
 }
 
 const ApplicationList = ({ data }: ApplicationListProps) => (
-	<Table>
+	<Table style={{ whiteSpace: 'nowrap' }}>
 		<thead>
 			<tr>
-				<th>Applicant Name</th>
+				<th style={{ width: '100%' }}>Applicant Name</th>
 				<th>Location</th>
-				<th>Status</th>
-				<th></th>
+				<th>Price</th>
 				<th></th>
 			</tr>
 		</thead>

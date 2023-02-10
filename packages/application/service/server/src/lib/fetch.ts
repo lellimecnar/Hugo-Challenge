@@ -23,7 +23,15 @@ export const fetchOne = async (applicationId: ApplicationIdType) => {
 
 export const fetchAll = async () => {
 	try {
-		const applications = await Applications.find().toArray();
+		const applications = await Applications.find(
+			{},
+			{
+				sort: {
+					completedAt: 1,
+					updatedAt: -1,
+				},
+			},
+		).toArray();
 
 		return { success: true, data: applications } as const;
 	} catch (error) {

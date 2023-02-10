@@ -1,4 +1,8 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import {
+	useMutation,
+	useQueryClient,
+	UseMutationOptions,
+} from '@tanstack/react-query';
 
 import {
 	ApplicationInputType,
@@ -7,42 +11,49 @@ import {
 
 import Api from '@proj/application-service/client';
 
-import { MutationOptions } from '../types';
-
 import { queryKeys } from '../queries';
 
-import { mutationKeys, SaveApplicationMutationKey } from './keys';
+import { mutationKeys } from './keys';
 export const useSaveApplication = (
 	id?: ApplicationIdType,
-	options?: MutationOptions<ApplicationInputType, SaveApplicationMutationKey>,
+	options?: UseMutationOptions<
+		ApplicationInputType,
+		unknown,
+		ApplicationInputType
+	>,
 ) => {
 	const client = useQueryClient();
 
 	return useMutation(
 		mutationKeys.save(id),
-		async (data: ApplicationInputType) => {
-			if (id) {
-				return Api.update(id, data);
-			}
-
-			return Api.create(data);
-		},
+		async (data) => Api.save(id, data),
 		{
-			retry: false,
 			...options,
-			onSuccess: (data: ApplicationInputType) => {
+			onSuccess: (data, ...args) => {
 				console.log('save', data);
 				client.invalidateQueries(queryKeys.all());
-				client.setQueryData(queryKeys.one(id), data);
+				client.setQueryData(queryKeys.one(data._id), data);
+
+				if (options?.onSuccess) {
+					return options.onSuccess(data, ...args);
+				}
 			},
 		},
 	);
 };
 export const useCreateApplication = (
-	options?: MutationOptions<ApplicationInputType, SaveApplicationMutationKey>,
+	options?: UseMutationOptions<
+		ApplicationInputType,
+		unknown,
+		ApplicationInputType
+	>,
 ) => useSaveApplication(undefined, options);
 
 export const useUpdateApplication = (
 	id: ApplicationIdType,
-	options?: MutationOptions<ApplicationInputType, SaveApplicationMutationKey>,
+	options?: UseMutationOptions<
+		ApplicationInputType,
+		unknown,
+		ApplicationInputType
+	>,
 ) => useSaveApplication(id, options);

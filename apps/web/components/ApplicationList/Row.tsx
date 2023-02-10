@@ -1,11 +1,25 @@
 import { useCallback } from 'react';
 import Link from 'next/link';
-import { Button, ActionIcon } from '@mantine/core';
-import { IconSquareMinus } from '@tabler/icons-react';
+import {
+	Button,
+	ActionIcon,
+	ThemeIcon,
+	Text,
+	Badge,
+	Center,
+	Group,
+} from '@mantine/core';
+import {
+	IconSquareMinus,
+	IconCheck,
+	IconTrashX,
+	IconEdit,
+} from '@tabler/icons-react';
 import compact from 'lodash/compact';
 import memoize from 'lodash/memoize';
 
 import { useRemoveApplication } from '@proj/application-hooks';
+import { ApplicationInputType } from '@proj/application-service/schema';
 
 const location = memoize((address) =>
 	compact([address?.city, address?.state]).join(', '),
@@ -18,7 +32,7 @@ const fullName = memoize((applicant) =>
 	compact([applicant?.lastName, applicant?.firstName]).join(', '),
 );
 
-const Row = ({ _id, applicant, price }) => {
+const Row = ({ _id, applicant, price }: ApplicationInputType) => {
 	const { mutateAsync: removeApplication } = useRemoveApplication(_id);
 
 	const removeRow = useCallback(async () => {
@@ -28,27 +42,37 @@ const Row = ({ _id, applicant, price }) => {
 	return (
 		<tr key={_id}>
 			<td>
-				<Link href={`/applications/${_id}`}>{fullName(applicant)}</Link>
-			</td>
-			<td>{location(applicant?.address)}</td>
-			<td>{currency(price)}</td>
-			<td>
-				<Button
-					variant="outline"
-					compact
-					uppercase
-					size="xs"
-					disabled={!!price}
-					component={price ? null : Link}
-					href={price ? null : `/applications/${_id}/edit`}
-				>
-					{price ? 'Completed' : 'Continue'}
-				</Button>
+				<Text component={Link} href={`/applications/${_id}`}>
+					{fullName(applicant)}
+				</Text>
 			</td>
 			<td>
-				<ActionIcon>
-					<IconSquareMinus onClick={removeRow} />
-				</ActionIcon>
+				<Text>{location(applicant?.address)}</Text>
+			</td>
+			<td align="center">
+				{price ? (
+					<Text>{currency(price)}</Text>
+				) : (
+					<Badge size="xs" color="orange" variant="outline">
+						Incomplete
+					</Badge>
+				)}
+			</td>
+			<td>
+				<Group position="right" w={100}>
+					{!price && (
+						<ActionIcon
+							color="blue"
+							component={Link}
+							href={`/applications/${_id}/edit`}
+						>
+							<IconEdit />
+						</ActionIcon>
+					)}
+					<ActionIcon color="red" onClick={removeRow}>
+						<IconTrashX />
+					</ActionIcon>
+				</Group>
 			</td>
 		</tr>
 	);

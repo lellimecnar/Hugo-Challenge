@@ -53,12 +53,14 @@ const CoApplicants = () => {
 							<Field
 								name={`coApplicants.${index}.firstName`}
 								component={TextInput}
+								withAsterisk
 							/>
 						</td>
 						<td>
 							<Field
 								name={`coApplicants.${index}.lastName`}
 								component={TextInput}
+								withAsterisk
 							/>
 						</td>
 						<td>
@@ -66,6 +68,9 @@ const CoApplicants = () => {
 								name={`coApplicants.${index}.dob`}
 								component={DatePicker}
 								maxDate={MAX_DATE}
+								initialLevel="year"
+								withAsterisk
+								hideOutsideDates
 							/>
 						</td>
 						<td>
@@ -73,6 +78,7 @@ const CoApplicants = () => {
 								name={`coApplicants.${index}.relationship`}
 								component={Select}
 								data={RELATIONSHIPS}
+								withAsterisk
 							/>
 						</td>
 						<td>
@@ -101,5 +107,7 @@ const CoApplicants = () => {
 		</Table>
 	);
 };
+
+CoApplicants.fields = ['coApplicants'] as const;
 
 export default CoApplicants;

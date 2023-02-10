@@ -7,6 +7,11 @@ const queryClient = new QueryClient({
 			refetchOnMount: 'always',
 			staleTime: Infinity,
 		},
+		mutations: {
+			retry: false,
+			cacheTime: 0,
+			networkMode: 'always',
+		},
 	},
 });
 

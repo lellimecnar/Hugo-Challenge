@@ -8,7 +8,6 @@ import {
 	useFormState,
 	UseFormStateProps,
 	useWatch,
-	UseWatchProps,
 } from 'react-hook-form';
 
 import { ApplicationInputType } from '@proj/application-service/schema';
@@ -16,7 +15,7 @@ import { ApplicationInputType } from '@proj/application-service/schema';
 export const useApplicationForm = () => useFormContext<ApplicationInputType>();
 
 export const useApplicationFormState = (
-	props: Omit<UseFormStateProps<ApplicationInputType>, 'control'>,
+	props?: Omit<UseFormStateProps<ApplicationInputType>, 'control'>,
 ) => {
 	const { control } = useApplicationForm();
 
@@ -50,13 +49,12 @@ export const useApplicationFieldArray = (
 	});
 };
 
-export const useWatchApplicationField = (
-	props?: Omit<UseWatchProps<ApplicationInputType>, 'control'>,
-) => {
+export const useWatchApplicationField = ((props: object) => {
 	const { control } = useApplicationForm();
 
-	return useWatch<ApplicationInputType>({
+	return useWatch({
 		...props,
 		control,
-	} as any);
-};
+	});
+	// The UseWatchProps type doesn't actually match the type(s) from the actual useWatch function
+}) as typeof useWatch<ApplicationInputType>;

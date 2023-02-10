@@ -13,7 +13,9 @@ import range from 'lodash/range';
 
 import { Field, useApplicationFieldArray } from '@proj/application-hooks';
 
-const YEARS = range(1985, new Date().getFullYear() + 1).map((value) => ({
+const MIN_YEAR = 1985;
+const MAX_YEAR = new Date().getFullYear() + 1;
+const YEARS = range(MAX_YEAR, MIN_YEAR).map((value) => ({
 	value: value,
 	label: `${value}`,
 })) as unknown as SelectItem[];
@@ -50,24 +52,28 @@ const Vehicles = () => {
 								name={`vehicles.${index}.year`}
 								component={Select}
 								data={YEARS}
+								withAsterisk
 							/>
 						</td>
 						<td>
 							<Field
 								name={`vehicles.${index}.make`}
 								component={TextInput}
+								withAsterisk
 							/>
 						</td>
 						<td>
 							<Field
 								name={`vehicles.${index}.model`}
 								component={TextInput}
+								withAsterisk
 							/>
 						</td>
 						<td>
 							<Field
 								name={`vehicles.${index}.vin`}
 								component={TextInput}
+								withAsterisk
 							/>
 						</td>
 						<td>
@@ -97,4 +103,5 @@ const Vehicles = () => {
 	);
 };
 
+Vehicles.fields = ['vehicles'] as const;
 export default Vehicles;

@@ -25,7 +25,7 @@ export type SaveApplicationMutationKey = [
 ];
 
 export const mutationKeys = {
-	calculate: (id: ApplicationIdType) =>
+	calculate: (id?: ApplicationIdType) =>
 		[
 			{ scope: 'applications', type: 'calculate', id },
 		] as CalculateApplicationMutationKey,

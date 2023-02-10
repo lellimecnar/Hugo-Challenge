@@ -1,9 +1,8 @@
-import { TextInput, Grid } from '@mantine/core';
-import { DatePicker } from '@mantine/dates';
-import day from 'dayjs';
+import { TextInput, Grid, NumberInput } from '@mantine/core';
 import { Field } from '@proj/application-hooks';
-const MIN_AGE = 16;
-const MAX_DATE = day().subtract(MIN_AGE, 'years').startOf('day').toDate();
+
+import StateSelect from '../../StateSelect';
+import DobPicker from '../../DobPicker';
 
 const Applicant = () => {
 	return (
@@ -14,19 +13,21 @@ const Applicant = () => {
 						<Field
 							name="applicant.firstName"
 							component={TextInput}
+							withAsterisk
 						/>
 					</Grid.Col>
 					<Grid.Col span={6}>
 						<Field
 							name="applicant.lastName"
 							component={TextInput}
+							withAsterisk
 						/>
 					</Grid.Col>
-					<Grid.Col span={4}>
+					<Grid.Col span={5}>
 						<Field
 							name="applicant.dob"
-							component={DatePicker}
-							maxDate={MAX_DATE}
+							component={DobPicker}
+							withAsterisk
 						/>
 					</Grid.Col>
 				</Grid>
@@ -37,24 +38,29 @@ const Applicant = () => {
 						<Field
 							name="applicant.address.street"
 							component={TextInput}
+							withAsterisk
 						/>
 					</Grid.Col>
-					<Grid.Col span={7}>
+					<Grid.Col span={5}>
 						<Field
 							name="applicant.address.city"
 							component={TextInput}
+							withAsterisk
 						/>
 					</Grid.Col>
-					<Grid.Col span={2}>
+					<Grid.Col span={4}>
 						<Field
 							name="applicant.address.state"
-							component={TextInput}
+							component={StateSelect}
+							withAsterisk
 						/>
 					</Grid.Col>
 					<Grid.Col span={3}>
 						<Field
 							name="applicant.address.zip"
-							component={TextInput}
+							component={NumberInput}
+							withAsterisk
+							hideControls
 						/>
 					</Grid.Col>
 				</Grid>
@@ -62,5 +68,7 @@ const Applicant = () => {
 		</Grid>
 	);
 };
+
+Applicant.fields = ['applicant'] as const;
 
 export default Applicant;

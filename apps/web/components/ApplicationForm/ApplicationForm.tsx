@@ -5,24 +5,19 @@ import {
 	Stepper,
 	Group,
 	Button,
-	Space,
 	Paper,
-	Divider,
 	Container,
 	LoadingOverlay,
 } from '@mantine/core';
-import {
-	IconChevronLeft,
-	IconChevronRight,
-	IconFileUpload,
-} from '@tabler/icons-react';
-import { useCounter } from 'react-use';
+import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react';
+import { useCounter, useLatest } from 'react-use';
 
 import type { ApplicationIdType } from '@proj/application-service/schema';
 import {
 	useApplicationForm,
 	useWatchApplicationField,
-	useCreateApplication,
+	useSaveApplication,
+	useCalculateApplication,
 } from '@proj/application-hooks';
 
 import Applicant from './Applicant';
@@ -50,144 +45,147 @@ interface ApplicationFormProps {
 }
 
 const ApplicationForm = ({ id }: ApplicationFormProps) => {
+	const form = useApplicationForm();
 	const {
 		trigger,
 		getValues,
+		reset,
 		formState: {
-			isValid,
+			isDirty,
+			isValidating,
 			isSubmitting,
 			isSubmitSuccessful,
-			isValidating,
-			isDirty,
+			isValid,
 		},
-	} = useApplicationForm();
-	const router = useRouter();
-	const { mutateAsync: createApplication } = useCreateApplication();
-	const [activeStep, { inc, dec, set }] = useCounter(0, STEPS.length + 1, 0);
-	const isFirst = activeStep === 0;
-	const isLast = activeStep === STEPS.length - 1;
-	const [paused, setPaused] = useState(false);
+	} = form;
 	const [_id, completedAt] = useWatchApplicationField({
 		name: ['_id', 'completedAt'],
 	}) as [string, Date];
 
+	const router = useRouter();
+	const { mutateAsync: saveApplication } = useSaveApplication(_id ?? id);
+	const { mutateAsync: calculateApplication } = useCalculateApplication();
+	const [activeStep, { inc, dec, set }] = useCounter(0, STEPS.length + 1, 0);
+	const compRef = useLatest(STEPS[activeStep]?.Comp);
+	const isFirst = activeStep === 0;
+	const isLast = activeStep === STEPS.length - 1;
+	const [paused, setPaused] = useState(false);
+	const isLoading = !!(
+		(id && id !== _id) ||
+		paused ||
+		isSubmitting ||
+		isSubmitSuccessful ||
+		isValidating
+	);
+
 	useEffect(() => {
-		if (id && id === _id && completedAt) {
+		if (completedAt) {
 			set(STEPS.length);
 		}
-	}, [_id, id, completedAt]);
-	useEffect(() => {
-		if (isSubmitSuccessful) {
-			inc();
-		}
-	}, [isSubmitSuccessful, inc]);
+	}, [completedAt, set]);
+
 	useEffect(() => {
 		if (isSubmitting) {
 			setPaused(true);
 		}
 	}, [isSubmitting, setPaused]);
 	const prevStep = useCallback(() => dec(), [dec]);
-	const nextStep = useCallback(
-		() =>
-			trigger().then((result) => {
-				if (result) {
-					setPaused(true);
-					inc();
-					setTimeout(() => setPaused(false), 500);
-				}
-			}),
-		[inc, trigger, setPaused],
-	);
+	const nextStep = useCallback(async () => {
+		setPaused(true);
+
+		console.log(compRef.current.fields);
+		if (await trigger(compRef.current.fields)) {
+			inc();
+		}
+
+		await new Promise((resolve) => setTimeout(resolve, 500));
+
+		setPaused(false);
+	}, [inc, trigger, setPaused, compRef]);
+	const lastStep = useCallback(async () => {
+		const newData = await saveApplication(getValues());
+		console.log({ newData });
+		const calculatedData = await calculateApplication(newData._id);
+		console.log({ calculatedData });
+
+		reset(calculatedData);
+
+		set(STEPS.length);
+	}, [saveApplication, calculateApplication, getValues, set, reset]);
+
 	const saveForLater = useCallback(async () => {
-		await createApplication(getValues());
+		setPaused(true);
+		await saveApplication(getValues());
+
 		router.push('/applications');
-	}, [createApplication, getValues, router.push]);
+	}, [saveApplication, getValues, router.push, setPaused]);
 
 	return (
 		<Container>
-			<LoadingOverlay visible={!!(id && _id !== id)} />
+			<LoadingOverlay visible={isLoading} />
 			<Stepper active={activeStep} onStepClick={set} mih={300}>
 				{STEPS.map(({ Comp, ...step }) => (
 					<Stepper.Step {...step} key={step.label}>
-						<Paper shadow="md" p={0} withBorder>
-							<Container mih={250} p="lg" m="lg" maw="100%">
-								<Comp />
-							</Container>
-							<Divider mt="xl" />
-							<Group
-								mt="md"
-								position="apart"
-								px="lg"
-								py="xs"
-								mx="lg"
-								my="xs"
-							>
-								<Group position="left">
-									<Button
-										variant="default"
-										onClick={saveForLater}
-										disabled={!isDirty}
-									>
-										Save and Finish Later
-									</Button>
-									<Button
-										component={Link}
-										href="/applications"
-										variant="subtle"
-									>
-										Cancel
-									</Button>
-								</Group>
-								<Group position="right">
-									{!isFirst && (
-										<Button
-											onClick={prevStep}
-											variant="subtle"
-										>
-											<IconChevronLeft />
-											Back
-										</Button>
-									)}
-									<Button
-										type={isLast ? 'submit' : undefined}
-										color={isLast ? 'green' : undefined}
-										disabled={
-											!isValid ||
-											paused ||
-											isSubmitting ||
-											isSubmitSuccessful ||
-											isValidating
-										}
-										loading={
-											isSubmitting ||
-											paused ||
-											isSubmitSuccessful ||
-											isValidating
-										}
-										onClick={isLast ? undefined : nextStep}
-									>
-										{isLast ? (
-											<>
-												Submit
-												<Space w="sm" />
-												<IconFileUpload />
-											</>
-										) : (
-											<>
-												Next
-												<IconChevronRight />
-											</>
-										)}
-									</Button>
-								</Group>
-							</Group>
+						<Paper shadow="md" withBorder mih={250} p="lg" my="lg">
+							<Comp />
 						</Paper>
 					</Stepper.Step>
 				))}
 				<Stepper.Completed>
-					<Complete />
+					<Paper shadow="md" withBorder mih={250} p="lg" my="lg">
+						<Complete />
+					</Paper>
 				</Stepper.Completed>
 			</Stepper>
+			{activeStep <= STEPS.length - 1 && (
+				<Group position="apart" mt="xl" p="lg">
+					<Group position="left">
+						<Button
+							variant="default"
+							onClick={saveForLater}
+							disabled={!isDirty}
+							loading={isLoading}
+						>
+							Save and Finish Later
+						</Button>
+						<Button
+							component={Link}
+							href="/applications"
+							variant="subtle"
+							disabled={isLoading}
+						>
+							Cancel
+						</Button>
+					</Group>
+					<Group position="right">
+						{!isFirst && (
+							<Button
+								onClick={prevStep}
+								variant="subtle"
+								disabled={isLoading}
+							>
+								<IconChevronLeft />
+								Back
+							</Button>
+						)}
+						{isLast && !paused ? (
+							<Button
+								color="green"
+								disabled={!isValid}
+								onClick={lastStep}
+								loading={isLoading}
+							>
+								Submit
+							</Button>
+						) : (
+							<Button loading={isLoading} onClick={nextStep}>
+								Next
+								<IconChevronRight />
+							</Button>
+						)}
+					</Group>
+				</Group>
+			)}
 		</Container>
 	);
 };
