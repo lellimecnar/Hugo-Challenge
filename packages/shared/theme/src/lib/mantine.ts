@@ -3,6 +3,8 @@ import { MantineTheme } from '@mantine/core';
 import { IconCalendar } from '@tabler/icons-react';
 import Link from 'next/link';
 
+import { prismTheme } from './prism';
+
 //  shadow="md" withBorder mih={250} p="lg" my="lg"
 
 export const mantineTheme: MantineTheme = {
@@ -57,6 +59,7 @@ export const mantineTheme: MantineTheme = {
 		Prism: {
 			defaultProps: {
 				noCopy: true,
+				getPrismTheme: () => prismTheme,
 			},
 		},
 		DatePicker: {

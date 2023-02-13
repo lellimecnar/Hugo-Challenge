@@ -40,7 +40,7 @@ export function Id() {
 			<Paper>
 				{application && (
 					<Prism language="json">
-						{JSON.stringify(application, null, '    ')}
+						{JSON.stringify(application, null, 4)}
 					</Prism>
 				)}
 			</Paper>
