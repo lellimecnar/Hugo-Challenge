@@ -10,7 +10,7 @@ export const Edit = () => {
 	} = useRouter();
 	return (
 		<ApplicationFormProvider id={id as string}>
-			<Title mb="xl">Application Edit</Title>
+			<Title>Application Edit</Title>
 			<ApplicationForm id={id as string} />
 		</ApplicationFormProvider>
 	);

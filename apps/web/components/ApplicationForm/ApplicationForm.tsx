@@ -137,24 +137,24 @@ const ApplicationForm = ({ id }: ApplicationFormProps) => {
 	}, [saveApplication, getValues, router.push, setPaused, trigger]);
 
 	return (
-		<Container>
+		<>
 			<LoadingOverlay visible={isLoading} />
-			<Stepper active={activeStep} onStepClick={set} mih={300}>
+			<Stepper active={activeStep} mt="xl" pt="xl">
 				{STEPS.map(({ Comp, ...step }) => (
 					<Stepper.Step {...step} key={step.label}>
-						<Paper shadow="md" withBorder mih={250} p="lg" my="lg">
+						<Paper>
 							<Comp />
 						</Paper>
 					</Stepper.Step>
 				))}
 				<Stepper.Completed>
-					<Paper shadow="md" withBorder mih={250} p="lg" my="lg">
+					<Paper>
 						<Complete />
 					</Paper>
 				</Stepper.Completed>
 			</Stepper>
 			{activeStep <= STEPS.length - 1 && (
-				<Group position="apart" mt="xl" pt="md">
+				<Group position="apart" mt="xl" pt="xs">
 					<Group position="left">
 						<Button
 							variant="default"
@@ -202,7 +202,7 @@ const ApplicationForm = ({ id }: ApplicationFormProps) => {
 					</Group>
 				</Group>
 			)}
-		</Container>
+		</>
 	);
 };
 

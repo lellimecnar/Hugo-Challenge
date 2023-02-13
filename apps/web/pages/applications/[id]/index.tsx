@@ -17,7 +17,8 @@ export function Id() {
 				<Group position="right">
 					{!!(application && !application.price) && (
 						<Button
-							variant="outline"
+							variant="subtle"
+							compact
 							size="xs"
 							color="blue"
 							leftIcon={<IconEdit />}
@@ -26,7 +27,8 @@ export function Id() {
 						</Button>
 					)}
 					<Button
-						variant="outline"
+						variant="subtle"
+						compact
 						size="xs"
 						color="red"
 						leftIcon={<IconTrashX />}
@@ -35,9 +37,9 @@ export function Id() {
 					</Button>
 				</Group>
 			</Group>
-			<Paper shadow="md" withBorder mih={250} p="lg" my="lg">
+			<Paper>
 				{application && (
-					<Prism language="json" noCopy>
+					<Prism language="json">
 						{JSON.stringify(application, null, '    ')}
 					</Prism>
 				)}

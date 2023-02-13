@@ -25,12 +25,13 @@ export function Applications() {
 					component={Link}
 					href="/applications/create"
 					variant="subtle"
+					compact
 					leftIcon={<IconSquarePlus />}
 				>
 					Start a New Application
 				</Button>
 			</Group>
-			<Paper shadow="md" withBorder mih={250} p="lg" my="lg">
+			<Paper>
 				<LoadingOverlay visible={isLoading} />
 				{!isLoading && <ApplicationList data={data} />}
 			</Paper>

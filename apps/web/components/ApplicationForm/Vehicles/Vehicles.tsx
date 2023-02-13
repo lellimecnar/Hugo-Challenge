@@ -63,28 +63,24 @@ const Vehicles = () => {
 									name={`vehicles.${index}.year`}
 									component={Select}
 									data={YEARS}
-									withAsterisk
 								/>
 							</td>
 							<td>
 								<Field
 									name={`vehicles.${index}.make`}
 									component={TextInput}
-									withAsterisk
 								/>
 							</td>
 							<td>
 								<Field
 									name={`vehicles.${index}.model`}
 									component={TextInput}
-									withAsterisk
 								/>
 							</td>
 							<td>
 								<Field
 									name={`vehicles.${index}.vin`}
 									component={TextInput}
-									withAsterisk
 								/>
 							</td>
 							<td>
@@ -114,11 +110,7 @@ const Vehicles = () => {
 				</tfoot>
 			</Table>
 			{!!errors?.vehicles?.message && (
-				<Alert
-					color="red"
-					icon={<IconAlertTriangle />}
-					variant="outline"
-				>
+				<Alert color="red" icon={<IconAlertTriangle />}>
 					<Text>{errors.vehicles.message}</Text>
 				</Alert>
 			)}

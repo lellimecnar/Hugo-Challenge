@@ -1,6 +1,4 @@
-import Link from 'next/link';
-import { Button, Space, Table } from '@mantine/core';
-import { IconSquarePlus } from '@tabler/icons-react';
+import { Table } from '@mantine/core';
 
 import { ApplicationInputType } from '@proj/application-service/schema';
 
@@ -11,7 +9,7 @@ export interface ApplicationListProps {
 }
 
 const ApplicationList = ({ data }: ApplicationListProps) => (
-	<Table style={{ whiteSpace: 'nowrap' }}>
+	<Table>
 		<thead>
 			<tr>
 				<th style={{ width: '100%' }}>Applicant Name</th>

@@ -46,10 +46,5 @@ export const ApplicationFormProvider = ({
 		}
 	}, [error, methods.setError]);
 
-	return (
-		<FormProvider {...methods}>
-			{children}
-			<pre>{JSON.stringify(methods.formState.errors, null, '    ')}</pre>
-		</FormProvider>
-	);
+	return <FormProvider {...methods}>{children}</FormProvider>;
 };

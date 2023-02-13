@@ -1,21 +1,7 @@
 import { useCallback } from 'react';
 import Link from 'next/link';
-import {
-	Button,
-	ActionIcon,
-	ThemeIcon,
-	Text,
-	Badge,
-	Center,
-	Group,
-	Anchor,
-} from '@mantine/core';
-import {
-	IconSquareMinus,
-	IconCheck,
-	IconTrashX,
-	IconEdit,
-} from '@tabler/icons-react';
+import { ActionIcon, Text, Badge, Group, Anchor } from '@mantine/core';
+import { IconTrashX, IconEdit } from '@tabler/icons-react';
 import compact from 'lodash/compact';
 import memoize from 'lodash/memoize';
 
@@ -43,7 +29,7 @@ const Row = ({ _id, applicant, price }: ApplicationInputType) => {
 	return (
 		<tr key={_id}>
 			<td>
-				<Anchor component={Link} href={`/applications/${_id}`}>
+				<Anchor href={`/applications/${_id}`}>
 					{fullName(applicant)}
 				</Anchor>
 			</td>
@@ -54,9 +40,7 @@ const Row = ({ _id, applicant, price }: ApplicationInputType) => {
 				{price ? (
 					<Text>{currency(price)}</Text>
 				) : (
-					<Badge size="xs" color="orange" variant="outline">
-						Incomplete
-					</Badge>
+					<Badge color="orange">Incomplete</Badge>
 				)}
 			</td>
 			<td>

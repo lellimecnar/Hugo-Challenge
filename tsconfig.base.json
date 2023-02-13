@@ -29,7 +29,8 @@
 			"@proj/application-service/server": [
 				"packages/application/service/server/src/index.ts"
 			],
-			"@proj/shared-db": ["packages/shared/db/src/index.ts"]
+			"@proj/shared-db": ["packages/shared/db/src/index.ts"],
+			"@proj/shared-theme": ["packages/shared/theme/src/index.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]
