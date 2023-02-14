@@ -1,6 +1,6 @@
 import { ObjectId } from 'bson';
 import { Applications } from '../db';
-import type { ApplicationIdType } from '../schema';
+import type { ApplicationIdType } from '@proj/application-service/schema';
 
 export const calculate = async (id: ApplicationIdType) => {
 	try {
@@ -9,7 +9,7 @@ export const calculate = async (id: ApplicationIdType) => {
 		const { ok, value, lastErrorObject } =
 			await Applications.findOneAndUpdate(
 				{
-					_id: new ObjectId(id),
+					_id: new ObjectId(id) as any,
 				},
 				{
 					$set: {

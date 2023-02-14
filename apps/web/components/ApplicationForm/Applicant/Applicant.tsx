@@ -1,4 +1,4 @@
-import { TextInput, Grid, NumberInput } from '@mantine/core';
+import { TextInput, Grid } from '@mantine/core';
 import { Field } from '@proj/application-hooks';
 
 import StateSelect from '../../StateSelect';
@@ -13,22 +13,16 @@ const Applicant = () => {
 						<Field
 							name="applicant.firstName"
 							component={TextInput}
-							withAsterisk
 						/>
 					</Grid.Col>
 					<Grid.Col span={6}>
 						<Field
 							name="applicant.lastName"
 							component={TextInput}
-							withAsterisk
 						/>
 					</Grid.Col>
 					<Grid.Col span={5}>
-						<Field
-							name="applicant.dob"
-							component={DobPicker}
-							withAsterisk
-						/>
+						<Field name="applicant.dob" component={DobPicker} />
 					</Grid.Col>
 				</Grid>
 			</Grid.Col>
@@ -38,29 +32,24 @@ const Applicant = () => {
 						<Field
 							name="applicant.address.street"
 							component={TextInput}
-							withAsterisk
 						/>
 					</Grid.Col>
 					<Grid.Col span={5}>
 						<Field
 							name="applicant.address.city"
 							component={TextInput}
-							withAsterisk
 						/>
 					</Grid.Col>
 					<Grid.Col span={4}>
 						<Field
 							name="applicant.address.state"
 							component={StateSelect}
-							withAsterisk
 						/>
 					</Grid.Col>
 					<Grid.Col span={3}>
 						<Field
 							name="applicant.address.zip"
-							component={NumberInput}
-							withAsterisk
-							hideControls
+							component={TextInput}
 						/>
 					</Grid.Col>
 				</Grid>

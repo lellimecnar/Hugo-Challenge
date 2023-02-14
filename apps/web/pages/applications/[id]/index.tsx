@@ -2,9 +2,10 @@ import { useRouter } from 'next/router';
 import { Prism } from '@mantine/prism';
 import { Title, Paper, Group, Button } from '@mantine/core';
 import { IconEdit, IconTrashX } from '@tabler/icons-react';
-import { useApplication } from '@proj/application-hooks';
+import { useApplication, prefetchOne } from '@proj/application-hooks';
+import Api from '@proj/application-service/server';
 
-export function Id() {
+export function ApplicationDetailPage() {
 	const {
 		query: { id },
 	} = useRouter();
@@ -48,4 +49,11 @@ export function Id() {
 	);
 }
 
-export default Id;
+export const getServerSideProps = async (context) => {
+	const id = context.query.id as string;
+	const dehydratedState = await prefetchOne(id, Api.fetchOne);
+
+	return { props: { dehydratedState } };
+};
+
+export default ApplicationDetailPage;

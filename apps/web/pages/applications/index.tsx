@@ -1,21 +1,19 @@
+import { useMemo } from 'react';
 import Link from 'next/link';
-import {
-	Paper,
-	Button,
-	Space,
-	Group,
-	Title,
-	LoadingOverlay,
-} from '@mantine/core';
+import { Paper, Button, Group, Title, LoadingOverlay } from '@mantine/core';
 import { IconSquarePlus } from '@tabler/icons-react';
 
-import { useApplications } from '@proj/application-hooks';
+import { useApplications, prefetchAll } from '@proj/application-hooks';
+import Api from '@proj/application-service/server';
 
 import ApplicationList from 'apps/web/components/ApplicationList';
 
 export function Applications() {
-	const result = useApplications();
-	const { data, isLoading } = result;
+	const { data } = useApplications();
+	const isLoading = useMemo(
+		() => !(Array.isArray(data) && data.length),
+		[data],
+	);
 
 	return (
 		<div>
@@ -38,5 +36,11 @@ export function Applications() {
 		</div>
 	);
 }
+
+export const getServerSideProps = async () => {
+	const dehydratedState = await prefetchAll(Api.fetchAll);
+
+	return { props: { dehydratedState } };
+};
 
 export default Applications;

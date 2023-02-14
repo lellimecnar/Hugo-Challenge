@@ -4,8 +4,8 @@ import { Title, Center, Button, Space, Flex } from '@mantine/core';
 import { useWatchApplicationField } from '@proj/application-hooks';
 
 const Complete = () => {
-	const price = useWatchApplicationField({
-		name: 'price',
+	const [id, price] = useWatchApplicationField({
+		name: ['_id', 'price'],
 	});
 
 	return (
@@ -24,7 +24,7 @@ const Complete = () => {
 					</>
 				)}
 				<Space h="xl" />
-				<Button component={Link} href="/applications">
+				<Button component={Link} href={`/applications/${id}`}>
 					Finished
 				</Button>
 			</Flex>

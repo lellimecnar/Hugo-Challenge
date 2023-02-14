@@ -30,9 +30,9 @@ export const useSaveApplication = (
 		{
 			...options,
 			onSuccess: (data, ...args) => {
-				console.log('save', data);
 				client.invalidateQueries(queryKeys.all());
 				client.setQueryData(queryKeys.one(data._id), data);
+				// client.removeQueries(queryKeys.one());
 
 				if (options?.onSuccess) {
 					return options.onSuccess(data, ...args);

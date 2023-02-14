@@ -3,23 +3,15 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import {
-	MantineProvider,
-	Container,
-	Button,
-	Title,
-	AppShell,
-	Header,
-	Navbar,
-} from '@mantine/core';
+import { MantineProvider, Container, Button, AppShell } from '@mantine/core';
 import { IconChevronLeft } from '@tabler/icons-react';
 import { withApplicationQuery } from '@proj/application-hooks';
 import { mantineTheme } from '@proj/shared-theme';
 
 import AppHeader from '../components/AppHeader';
-import AppNav from '../components/AppNav';
+// import AppNav from '../components/AppNav';
 
-const App = ({ Component, pageProps }: AppProps) => {
+const BackButton = () => {
 	const router = useRouter();
 	const back = useMemo(() => {
 		const segments = router.asPath?.split(/(?=\/)/g);
@@ -29,6 +21,23 @@ const App = ({ Component, pageProps }: AppProps) => {
 		return segments?.join('') || '/';
 	}, [router.asPath]);
 
+	if (back === router.asPath) {
+		return null;
+	}
+
+	return (
+		<Button
+			variant="subtle"
+			component={Link}
+			href={back}
+			leftIcon={<IconChevronLeft />}
+		>
+			Go Back
+		</Button>
+	);
+};
+
+const App = ({ Component, pageProps }: AppProps) => {
 	return (
 		<>
 			<MantineProvider
@@ -44,16 +53,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 					// navbar={<AppNav />}
 				>
 					<Container size="lg">
-						{back !== router.asPath && (
-							<Button
-								variant="subtle"
-								component={Link}
-								href={back}
-								leftIcon={<IconChevronLeft />}
-							>
-								Go Back
-							</Button>
-						)}
+						<BackButton />
 						<Component {...pageProps} />
 					</Container>
 				</AppShell>

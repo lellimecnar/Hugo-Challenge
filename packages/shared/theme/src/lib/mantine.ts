@@ -82,8 +82,7 @@ export const mantineTheme: MantineTheme = {
 				},
 			},
 			defaultProps: {
-				striped: true,
-				horizontalSpacing: 'xl',
+				horizontalSpacing: 'xs',
 				verticalSpacing: 'xs',
 			},
 		},

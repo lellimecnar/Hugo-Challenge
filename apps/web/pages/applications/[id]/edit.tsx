@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
-import { ApplicationFormProvider } from '@proj/application-hooks';
+import { ApplicationFormProvider, prefetchOne } from '@proj/application-hooks';
 import { Title } from '@mantine/core';
+import Api from '@proj/application-service/server';
 
 import ApplicationForm from 'apps/web/components/ApplicationForm';
 
@@ -14,6 +15,15 @@ export const Edit = () => {
 			<ApplicationForm id={id as string} />
 		</ApplicationFormProvider>
 	);
+};
+
+export const getServerSideProps = async (context) => {
+	const id = context.query.id as string;
+	const dehydratedState = await prefetchOne(id, Api.fetchOne);
+
+	return {
+		props: { dehydratedState },
+	};
 };
 
 export default Edit;

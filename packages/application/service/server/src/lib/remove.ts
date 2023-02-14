@@ -1,6 +1,6 @@
 import { ObjectId } from 'bson';
 
-import type { ApplicationIdType } from '../schema';
+import type { ApplicationIdType } from '@proj/application-service/schema';
 
 import { Applications } from '../db';
 
@@ -11,7 +11,7 @@ export const remove = async (applicationId: ApplicationIdType) => {
 		}
 
 		const { deletedCount } = await Applications.deleteOne({
-			_id: new ObjectId(applicationId),
+			_id: new ObjectId(applicationId) as any,
 		});
 
 		if (!deletedCount) {

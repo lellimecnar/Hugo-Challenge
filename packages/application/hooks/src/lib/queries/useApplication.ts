@@ -19,7 +19,15 @@ export const useApplication = (
 ) => {
 	const result = useQuery(queryKeys.one(id), async () => Api.fetchOne(id), {
 		staleTime: Infinity,
-		refetchOnMount: 'always',
+		...(id
+			? {
+					cacheTime: 0,
+					enabled: false,
+					refetch: false,
+			  }
+			: {
+					refetchOnMount: 'always',
+			  }),
 		...options,
 	});
 	const data = useMemo(

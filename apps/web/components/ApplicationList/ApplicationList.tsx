@@ -9,7 +9,7 @@ export interface ApplicationListProps {
 }
 
 const ApplicationList = ({ data }: ApplicationListProps) => (
-	<Table>
+	<Table horizontalSpacing="xl" striped>
 		<thead>
 			<tr>
 				<th style={{ width: '100%' }}>Applicant Name</th>

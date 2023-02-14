@@ -1,6 +1,7 @@
 import { z, input, output } from 'zod';
 
 const ZIP_REGEXP = /^\d{5}$/;
+const STATE_REGEXP = /^[A-Z]{2}$/i;
 
 export const Address = z.object({
 	street: z.string().trim().min(1).describe('Street Address'),
@@ -8,18 +9,13 @@ export const Address = z.object({
 	state: z
 		.string()
 		.trim()
-		.length(2)
+		.regex(STATE_REGEXP, 'Invalid State')
 		.transform((val) => val.toUpperCase())
 		.describe('State'),
-	zip: z
-		.union([
-			z
-				.string()
-				.trim()
-				.transform((val) => +val),
-			z.coerce.number().int(),
-		])
-		.refine((val: number) => ZIP_REGEXP.test(`${val}`), 'Invalid Zip Code')
+	zip: z.coerce
+		.string()
+		.trim()
+		.regex(ZIP_REGEXP, 'Invalid Zip Code')
 		.describe('Zip Code'),
 });
 

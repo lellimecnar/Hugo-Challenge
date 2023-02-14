@@ -4,7 +4,7 @@ import { Applicant } from './Applicant';
 import { CoApplicant } from './CoApplicant';
 import { Vehicle } from './Vehicle';
 
-export const ApplicationId = z
+export const ApplicationId = z.coerce
 	.string()
 	.trim()
 	.regex(/^[a-f\d]{24}$/i, 'Invalid ID');

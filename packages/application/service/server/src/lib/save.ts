@@ -5,7 +5,7 @@ import {
 	ApplicationInput,
 	ApplicationInputType,
 	ApplicationIdType,
-} from '../schema';
+} from '@proj/application-service/schema';
 
 import { Applications } from '../db';
 
@@ -26,7 +26,7 @@ export const save = async (
 		const { ok, value, lastErrorObject } =
 			await Applications.findOneAndReplace(
 				{
-					_id: new ObjectId(applicationId),
+					_id: new ObjectId(applicationId) as any,
 				},
 				omit(validationResult, '_id'),
 				{ upsert: true, returnDocument: 'after' },

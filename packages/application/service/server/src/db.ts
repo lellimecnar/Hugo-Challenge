@@ -1,5 +1,5 @@
 import SharedDb from '@proj/shared-db';
-import type { ApplicationInputType } from './schema';
+import type { ApplicationInputType } from '@proj/application-service/schema';
 
 export const client = SharedDb('ApplicationService');
 

@@ -3,7 +3,9 @@
 	"version": "0.0.0",
 	"license": "MIT",
 	"scripts": {
-		"start": "nx serve web"
+		"start": "nx serve web",
+		"lint": "nx run-many --target lint",
+		"test": "nx run-many --target test"
 	},
 	"private": true,
 	"dependencies": {
@@ -49,6 +51,7 @@
 		"@nrwl/workspace": "15.6.3",
 		"@swc/cli": "~0.1.55",
 		"@swc/core": "^1.2.173",
+		"@tanstack/react-query-devtools": "^4.24.6",
 		"@testing-library/react": "13.4.0",
 		"@types/jest": "28.1.1",
 		"@types/lodash": "^4.14.191",

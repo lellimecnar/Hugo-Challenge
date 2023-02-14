@@ -1,14 +1,7 @@
 import { useCallback, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import {
-	Stepper,
-	Group,
-	Button,
-	Paper,
-	Container,
-	LoadingOverlay,
-} from '@mantine/core';
+import { Stepper, Group, Button, Paper, LoadingOverlay } from '@mantine/core';
 import {
 	IconChevronLeft,
 	IconChevronRight,
