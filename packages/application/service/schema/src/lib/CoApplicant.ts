@@ -3,7 +3,7 @@ import { z, input, output } from 'zod';
 import { Applicant } from './Applicant';
 
 export const CoApplicant = Applicant.omit({ address: true }).extend({
-    relationship: z.enum(['Spouse', 'Sibling', 'Parent', 'Friend', 'Other']),
+	relationship: z.enum(['Spouse', 'Sibling', 'Parent', 'Friend', 'Other']),
 });
 
 export const CoApplicantInput = CoApplicant.deepPartial();

@@ -4,8 +4,8 @@ import * as remove from './lib/remove';
 import * as save from './lib/save';
 
 export default {
-    ...calculate,
-    ...fetch,
-    ...remove,
-    ...save,
+	...calculate,
+	...fetch,
+	...remove,
+	...save,
 };
