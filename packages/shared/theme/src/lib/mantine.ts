@@ -7,7 +7,7 @@ import { prismTheme } from './prism';
 
 //  shadow="md" withBorder mih={250} p="lg" my="lg"
 
-export const mantineTheme: MantineTheme = {
+export const mantineTheme: Partial<MantineTheme> = {
 	black: '#333',
 	globalStyles: (theme) => ({
 		body: {
