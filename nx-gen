@@ -1,0 +1,28 @@
+#!/usr/bin/env zx
+
+const {
+	_: [genPackage, projectName],
+} = argv;
+const { npmScope } = require('./nx.json');
+const args = [];
+
+if (genPackage?.startsWith('@')) {
+	args.push(genPackage);
+} else {
+	args.push(`@nrwl/${genPackage}`);
+}
+
+args.push('--name', projectName);
+let importPath = `@${npmScope}/`;
+
+if (argv.directory) {
+	importPath += `${argv.directory}-`;
+}
+
+importPath += `${projectName}`;
+
+args.push('--importPath', importPath);
+
+args.push(...process.argv.slice(5));
+
+$`nx generate ${args}`;
