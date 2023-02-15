@@ -10,7 +10,7 @@ import {
 	useWatch,
 } from 'react-hook-form';
 
-import { ApplicationInputType } from '@proj/application-service/schema';
+import { ApplicationInputType } from '@lellimecnar/application-service/schema';
 
 export const useApplicationForm = () => useFormContext<ApplicationInputType>();
 

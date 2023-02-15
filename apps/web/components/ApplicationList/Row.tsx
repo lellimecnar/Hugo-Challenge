@@ -5,8 +5,8 @@ import { IconTrashX, IconEdit } from '@tabler/icons-react';
 import compact from 'lodash/compact';
 import memoize from 'lodash/memoize';
 
-import { useRemoveApplication } from '@proj/application-hooks';
-import { ApplicationInputType } from '@proj/application-service/schema';
+import { useRemoveApplication } from '@lellimecnar/application-hooks';
+import { ApplicationInputType } from '@lellimecnar/application-service/schema';
 
 const location = memoize((address) =>
 	compact([address?.city, address?.state]).join(', '),

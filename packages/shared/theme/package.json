@@ -1,5 +1,8 @@
 {
-	"name": "@proj/shared-theme",
+	"name": "@lellimecnar/shared-theme",
 	"version": "0.0.1",
-	"type": "commonjs"
+	"type": "module",
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	}
 }

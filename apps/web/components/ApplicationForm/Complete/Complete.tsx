@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Title, Center, Button, Space, Flex } from '@mantine/core';
 
-import { useWatchApplicationField } from '@proj/application-hooks';
+import { useWatchApplicationField } from '@lellimecnar/application-hooks';
 
 const Complete = () => {
 	const [id, price] = useWatchApplicationField({

@@ -5,9 +5,9 @@ import {
 	ApplicationIdType,
 	ApplicationType,
 	ApplicationInput,
-} from '@proj/application-service/schema';
+} from '@lellimecnar/application-service/schema';
 
-import Api from '@proj/application-service/client';
+import Api from '@lellimecnar/application-service/client';
 
 import { QueryOptions } from '../types';
 

@@ -1,5 +1,8 @@
 {
-	"name": "@proj/application-service/server",
+	"name": "@lellimecnar/application-service/server",
 	"version": "0.0.1",
-	"type": "commonjs"
+	"type": "module",
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	}
 }

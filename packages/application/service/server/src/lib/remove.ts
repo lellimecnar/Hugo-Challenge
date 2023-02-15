@@ -1,6 +1,6 @@
 import { ObjectId } from 'bson';
 
-import type { ApplicationIdType } from '@proj/application-service/schema';
+import type { ApplicationIdType } from '@lellimecnar/application-service/schema';
 
 import { Applications } from '../db';
 

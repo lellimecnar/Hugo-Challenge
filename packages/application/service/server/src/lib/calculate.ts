@@ -1,6 +1,6 @@
 import { ObjectId } from 'bson';
 import { Applications } from '../db';
-import type { ApplicationIdType } from '@proj/application-service/schema';
+import type { ApplicationIdType } from '@lellimecnar/application-service/schema';
 
 export const calculate = async (id: ApplicationIdType) => {
 	try {

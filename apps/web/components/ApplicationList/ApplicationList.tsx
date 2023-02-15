@@ -1,6 +1,6 @@
 import { Table } from '@mantine/core';
 
-import { ApplicationInputType } from '@proj/application-service/schema';
+import { ApplicationInputType } from '@lellimecnar/application-service/schema';
 
 import Row from './Row';
 

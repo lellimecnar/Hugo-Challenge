@@ -2,8 +2,8 @@ import { useRouter } from 'next/router';
 import { Prism } from '@mantine/prism';
 import { Title, Paper, Group, Button } from '@mantine/core';
 import { IconEdit, IconTrashX } from '@tabler/icons-react';
-import { useApplication, prefetchOne } from '@proj/application-hooks';
-import Api from '@proj/application-service/server';
+import { useApplication, prefetchOne } from '@lellimecnar/application-hooks';
+import Api from '@lellimecnar/application-service/server';
 
 export function ApplicationDetailPage() {
 	const {

@@ -1,7 +1,7 @@
 import {
 	ApplicationIdType,
 	ApplicationType,
-} from '@proj/application-service/schema';
+} from '@lellimecnar/application-service/schema';
 
 import { request } from '../Api';
 

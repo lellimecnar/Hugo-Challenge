@@ -5,8 +5,8 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { MantineProvider, Container, Button, AppShell } from '@mantine/core';
 import { IconChevronLeft } from '@tabler/icons-react';
-import { withApplicationQuery } from '@proj/application-hooks';
-import { mantineTheme } from '@proj/shared-theme';
+import { withApplicationQuery } from '@lellimecnar/application-hooks';
+import { mantineTheme } from '@lellimecnar/shared-theme';
 
 import AppHeader from '../components/AppHeader';
 // import AppNav from '../components/AppNav';

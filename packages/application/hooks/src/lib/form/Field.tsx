@@ -3,7 +3,7 @@ import type { FieldPath } from 'react-hook-form';
 import {
 	ApplicationInputType,
 	Application,
-} from '@proj/application-service/schema';
+} from '@lellimecnar/application-service/schema';
 import { Popover, Text } from '@mantine/core';
 import styled from '@emotion/styled';
 import get from 'lodash/get';

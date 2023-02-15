@@ -1,7 +1,10 @@
 import { useRouter } from 'next/router';
-import { ApplicationFormProvider, prefetchOne } from '@proj/application-hooks';
+import {
+	ApplicationFormProvider,
+	prefetchOne,
+} from '@lellimecnar/application-hooks';
 import { Title } from '@mantine/core';
-import Api from '@proj/application-service/server';
+import Api from '@lellimecnar/application-service/server';
 
 import ApplicationForm from 'apps/web/components/ApplicationForm';
 

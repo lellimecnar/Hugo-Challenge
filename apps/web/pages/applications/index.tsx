@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { Paper, Button, Group, Title, LoadingOverlay } from '@mantine/core';
 import { IconSquarePlus } from '@tabler/icons-react';
 
-import { useApplications, prefetchAll } from '@proj/application-hooks';
-import Api from '@proj/application-service/server';
+import { useApplications, prefetchAll } from '@lellimecnar/application-hooks';
+import Api from '@lellimecnar/application-service/server';
 
 import ApplicationList from 'apps/web/components/ApplicationList';
 

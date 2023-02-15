@@ -1,10 +1,10 @@
 import type { NextApiHandler } from 'next';
 
-import Applications from '@proj/application-service/server';
+import Applications from '@lellimecnar/application-service/server';
 import {
 	ApplicationIdType,
 	ApplicationInputType,
-} from '@proj/application-service/schema';
+} from '@lellimecnar/application-service/schema';
 
 const handler: NextApiHandler = async ({ method, query, body }, res) => {
 	switch (method) {

@@ -2,7 +2,7 @@ import omit from 'lodash/omit';
 import {
 	ApplicationIdType,
 	ApplicationInputType,
-} from '@proj/application-service/schema';
+} from '@lellimecnar/application-service/schema';
 
 import { request } from '../Api';
 

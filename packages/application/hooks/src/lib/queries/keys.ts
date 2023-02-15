@@ -1,4 +1,4 @@
-import { ApplicationIdType } from '@proj/application-service/schema';
+import { ApplicationIdType } from '@lellimecnar/application-service/schema';
 
 export type ApplicationsQueryKey = [
 	{

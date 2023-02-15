@@ -11,11 +11,11 @@ import {
 	DehydratedState,
 } from '@tanstack/react-query';
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import Api from '@proj/application-service/client';
+import Api from '@lellimecnar/application-service/client';
 import {
 	ApplicationIdType,
 	ApplicationInputType,
-} from '@proj/application-service/schema';
+} from '@lellimecnar/application-service/schema';
 
 import { ApplicationQueryKeys, queryKeys } from './queries';
 

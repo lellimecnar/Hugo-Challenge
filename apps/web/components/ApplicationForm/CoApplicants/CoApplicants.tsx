@@ -11,8 +11,11 @@ import { DatePicker } from '@mantine/dates';
 import { IconSquarePlus, IconSquareMinus } from '@tabler/icons-react';
 import day from 'dayjs';
 
-import { CoApplicant } from '@proj/application-service/schema';
-import { Field, useApplicationFieldArray } from '@proj/application-hooks';
+import { CoApplicant } from '@lellimecnar/application-service/schema';
+import {
+	Field,
+	useApplicationFieldArray,
+} from '@lellimecnar/application-hooks';
 
 const RELATIONSHIPS = CoApplicant.shape.relationship._def.values.map(
 	(value) => ({ value, label: value }),

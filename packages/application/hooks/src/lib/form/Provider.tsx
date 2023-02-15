@@ -6,7 +6,7 @@ import {
 	Application,
 	ApplicationIdType,
 	ApplicationInputType,
-} from '@proj/application-service/schema';
+} from '@lellimecnar/application-service/schema';
 
 import { useApplication } from '../queries';
 

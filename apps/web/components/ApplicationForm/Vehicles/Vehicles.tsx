@@ -20,7 +20,7 @@ import {
 	Field,
 	useApplicationFieldArray,
 	useApplicationFormState,
-} from '@proj/application-hooks';
+} from '@lellimecnar/application-hooks';
 
 const MIN_YEAR = 1985;
 const MAX_YEAR = new Date().getFullYear() + 1;

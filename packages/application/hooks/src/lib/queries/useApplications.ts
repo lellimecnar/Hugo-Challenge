@@ -1,8 +1,8 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { ApplicationType } from '@proj/application-service/schema';
+import { ApplicationType } from '@lellimecnar/application-service/schema';
 
-import Api from '@proj/application-service/client';
+import Api from '@lellimecnar/application-service/client';
 
 import { QueryOptions } from '../types';
 

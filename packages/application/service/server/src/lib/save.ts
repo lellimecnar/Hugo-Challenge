@@ -5,7 +5,7 @@ import {
 	ApplicationInput,
 	ApplicationInputType,
 	ApplicationIdType,
-} from '@proj/application-service/schema';
+} from '@lellimecnar/application-service/schema';
 
 import { Applications } from '../db';
 

@@ -7,9 +7,9 @@ import {
 import {
 	ApplicationInputType,
 	ApplicationIdType,
-} from '@proj/application-service/schema';
+} from '@lellimecnar/application-service/schema';
 
-import Api from '@proj/application-service/client';
+import Api from '@lellimecnar/application-service/client';
 
 import { mutationKeys } from './keys';
 import { queryKeys } from '../queries';

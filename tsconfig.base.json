@@ -17,20 +17,20 @@
 		"baseUrl": ".",
 		"jsx": "react-jsxdev",
 		"paths": {
-			"@proj/application-hooks": [
+			"@lellimecnar/application-hooks": [
 				"packages/application/hooks/src/index.ts"
 			],
-			"@proj/application-service/client": [
+			"@lellimecnar/application-service/client": [
 				"packages/application/service/client/src/index.ts"
 			],
-			"@proj/application-service/schema": [
+			"@lellimecnar/application-service/schema": [
 				"packages/application/service/schema/src/index.ts"
 			],
-			"@proj/application-service/server": [
+			"@lellimecnar/application-service/server": [
 				"packages/application/service/server/src/index.ts"
 			],
-			"@proj/shared-db": ["packages/shared/db/src/index.ts"],
-			"@proj/shared-theme": ["packages/shared/theme/src/index.ts"]
+			"@lellimecnar/shared-db": ["packages/shared/db/src/index.ts"],
+			"@lellimecnar/shared-theme": ["packages/shared/theme/src/index.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp", ".next", "dist"]

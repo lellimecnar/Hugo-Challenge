@@ -11,13 +11,13 @@ import {
 } from '@tabler/icons-react';
 import { useCounter, useLatest } from 'react-use';
 
-import type { ApplicationIdType } from '@proj/application-service/schema';
+import type { ApplicationIdType } from '@lellimecnar/application-service/schema';
 import {
 	useApplicationForm,
 	useWatchApplicationField,
 	useSaveApplication,
 	useCalculateApplication,
-} from '@proj/application-hooks';
+} from '@lellimecnar/application-hooks';
 
 import Applicant from './Applicant';
 import Vehicles from './Vehicles';

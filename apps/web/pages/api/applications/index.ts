@@ -1,6 +1,6 @@
 import type { NextApiHandler } from 'next';
 
-import Applications from '@proj/application-service/server';
+import Applications from '@lellimecnar/application-service/server';
 
 const handler: NextApiHandler = async (req, res) => {
 	switch (req.method) {

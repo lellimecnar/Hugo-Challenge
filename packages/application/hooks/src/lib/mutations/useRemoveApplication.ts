@@ -3,8 +3,8 @@ import {
 	useQueryClient,
 	UseMutationOptions,
 } from '@tanstack/react-query';
-import { ApplicationIdType } from '@proj/application-service/schema';
-import Api from '@proj/application-service/client';
+import { ApplicationIdType } from '@lellimecnar/application-service/schema';
+import Api from '@lellimecnar/application-service/client';
 
 import { queryKeys } from '../queries';
 
